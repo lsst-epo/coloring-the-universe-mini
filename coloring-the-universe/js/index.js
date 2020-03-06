@@ -1,43 +1,22 @@
-function scrollToQuestionNode(id) {
-  const element = document.getElementById(id);
-  element.scrollIntoView({ block: 'end',  behavior: 'smooth' });
-}
-
 // Resets 6co widget
 function reset() {
-	let color = ['violet','blue','green','yellow','orange','red'];
-	for (let i=0; i<6;i++) {
-		Object.assign(document.getElementsByClassName('image-filter')[i].style,{display:'block', backgroundColor:color[i]});
-		document.getElementsByClassName('form-check-input')[i+3].checked = true;
-		document.getElementsByClassName('custom-select')[i+4].value = color[i];
+	var checkboxes = document.getElementsByClassName('form-check-input')
+	var selects = document.getElementsByClassName('custom-select')
+	var filters = document.getElementsByClassName('image-filter');
+	var colors = ['violet','blue','green','yellow','orange','red'];
+
+	for (let i = 0; i<checkboxes.length; i++) {
+		checkboxes[i].checked = false;
 	}
-}
 
-function rgbReset() {
-	let color = ['red','green','blue'];
-	for (let i=0; i<3;i++) {
-		Object.assign(document.getElementsByClassName('rgb-filter')[i].style,{display:'block', backgroundColor:color[i]});
-		document.getElementsByClassName('form-check-input')[i].checked = true;
-		document.getElementsByClassName('custom-select')[i].value = color[i];
+	for (let i = 0; i<selects.length; i++) {
+		selects[i].value = "";
 	}
+
+	colors.forEach(function(color, i) {
+		Object.assign(filters[i].style,{display:'none', backgroundColor:'none'});
+	})
 }
-
-// Changes the color of the prism
-// Manipulates the z-index to hide and show the rainbow colors
-function prismColor(color) {
-	// hide all colors
-	for (let i=0; i<=6; i++) {
-		Object.assign(document.getElementsByClassName('camera-filter')[i].style,{visibility:"hidden", opacity: "0", top: "-58px", transition: "0s", zIndex: '0'});
-		document.getElementsByClassName("prism-colors")[i].style.zIndex = '0';
-
-	}
-	Object.assign(document.getElementById(color).style,{visibility:"visible", backgroundColor: color, opacity: "1", top: "-36px", transition: "1.2s", zIndex: '1'});
-	document.getElementsByClassName('white-cover')[0].style.display = 'block';
-	setTimeout(function() {
-		document.getElementsByName(color)[0].style.zIndex = 3;	
-	}, 900);
-}
-
 
 
 // Turns filter on and off

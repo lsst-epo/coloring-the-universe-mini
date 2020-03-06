@@ -30,7 +30,7 @@
             <div class="row">
               <div class="center-sticky input-group ">
                 <select class="custom-select object-select" aria-label="select an object" onchange="selectObject(this.value)">
-                  <option >Select an Object</option>
+                  <option disabled value="">Select an Object</option>
                   <optgroup label="Spiral Galaxies">
                   <option selected value="m33">M33</option>
                   <option value="m51">M51</option>
@@ -167,7 +167,7 @@
         <div class="row py-2">
           <div class="col-4"></div>
           <div class="col-12 col-md-8">
-            <button id="button" class="button" value="preset" name="preset" onclick="" >Reset</button>
+            <button id="button" class="button" value="preset" name="preset" onclick="reset()" >Reset</button>
             
           </div>
         </div>
